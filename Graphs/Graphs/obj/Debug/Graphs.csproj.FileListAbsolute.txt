@@ -1,0 +1,7 @@
+C:\Users\user\Desktop\ITMO\4 семестр\Прикладная информатика\Лабораторная 3\Graphs\Graphs\bin\Debug\Graphs.exe.config
+C:\Users\user\Desktop\ITMO\4 семестр\Прикладная информатика\Лабораторная 3\Graphs\Graphs\bin\Debug\Graphs.exe
+C:\Users\user\Desktop\ITMO\4 семестр\Прикладная информатика\Лабораторная 3\Graphs\Graphs\bin\Debug\Graphs.pdb
+C:\Users\user\Desktop\ITMO\4 семестр\Прикладная информатика\Лабораторная 3\Graphs\Graphs\obj\Debug\Graphs.csprojAssemblyReference.cache
+C:\Users\user\Desktop\ITMO\4 семестр\Прикладная информатика\Лабораторная 3\Graphs\Graphs\obj\Debug\Graphs.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\ITMO\4 семестр\Прикладная информатика\Лабораторная 3\Graphs\Graphs\obj\Debug\Graphs.exe
+C:\Users\user\Desktop\ITMO\4 семестр\Прикладная информатика\Лабораторная 3\Graphs\Graphs\obj\Debug\Graphs.pdb
