@@ -12,6 +12,7 @@ namespace Graphs
         {
             Graph g1 = new Graph();
             g1.AdjInput();
+            g1.IncInput();
         }
     }
 }
