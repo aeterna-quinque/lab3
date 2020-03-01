@@ -6,6 +6,7 @@ namespace Graphs
     {
         private int[,] adjacent;
         private int[,] incident;
+        private string[] colour;
         private int vortex = 0;
         private int edge = 0;
 
@@ -81,6 +82,7 @@ namespace Graphs
             if (choice == 1) Console.WriteLine("1 - выходит из вершины\t -1 - входит в вершину\t 0 - нет связи");
             else Console.WriteLine("1 - есть связь\t 0 - нет связи");
             Console.WriteLine("Вершина --> Грань");
+            incident = new int[vortex, edge];
             for (int i = 0; i < vortex; i++)
             {
                 for (int j = 0; j < edge; j++)
@@ -91,6 +93,7 @@ namespace Graphs
                     if (j == edge - 1) Console.Write('\n');
                 }
             }
+            IncOutput();
         }
 
         public void IncOutput()
@@ -104,6 +107,15 @@ namespace Graphs
                 else Console.Write('\t');
             }
             Console.Write('\n');
+        }
+
+        public void dfsVisit()
+        {
+            Console.Write("Введите номер вершины, с которой хотите начать: ");
+            int StartVortex = int.Parse(Console.ReadLine());
+            int begin = VortexInput(); 
+            colour = new string[vortex];
+
         }
     }
 }
