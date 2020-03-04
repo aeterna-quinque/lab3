@@ -11,8 +11,11 @@ namespace Graphs
         static void Main(string[] args)
         {
             Graph g1 = new Graph();
-            //g1.AdjInput();
-            g1.IncInput();            
+            g1.AdjInput(false);
+            g1.IncInput();
+            g1.Dfs();
+            g1.Bfs();
+            g1.Dijkstra();
         }
     }
 }

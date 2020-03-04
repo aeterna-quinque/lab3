@@ -12,3 +12,10 @@ C:\Users\Господин\Documents\GitHub\lab3\Graphs\Graphs\obj\Debug\Graphs.c
 C:\Users\Господин\Documents\GitHub\lab3\Graphs\Graphs\obj\Debug\Graphs.csproj.CoreCompileInputs.cache
 C:\Users\Господин\Documents\GitHub\lab3\Graphs\Graphs\obj\Debug\Graphs.exe
 C:\Users\Господин\Documents\GitHub\lab3\Graphs\Graphs\obj\Debug\Graphs.pdb
+C:\Users\user\Documents\GitHub\lab3\Graphs\Graphs\obj\Debug\Graphs.csprojAssemblyReference.cache
+C:\Users\user\Documents\GitHub\lab3\Graphs\Graphs\obj\Debug\Graphs.csproj.CoreCompileInputs.cache
+C:\Users\user\Documents\GitHub\lab3\Graphs\Graphs\obj\Debug\Graphs.exe
+C:\Users\user\Documents\GitHub\lab3\Graphs\Graphs\obj\Debug\Graphs.pdb
+C:\Users\user\Documents\GitHub\lab3\Graphs\Graphs\bin\Debug\Graphs.exe.config
+C:\Users\user\Documents\GitHub\lab3\Graphs\Graphs\bin\Debug\Graphs.exe
+C:\Users\user\Documents\GitHub\lab3\Graphs\Graphs\bin\Debug\Graphs.pdb

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Graphs
 {
@@ -6,27 +7,31 @@ namespace Graphs
     {
         private int[,] adjacent;
         private int[,] incident;
-        private string[] colour;
         private int vortex = 0;
         private int edge = 0;
+        private bool[] visited;
+        private int begin = 0;
+        private int[] distance;
 
         public Graph()
         { }
 
-        public void AdjInput()
+        public void AdjInput(bool dkstr)
         {
             Console.WriteLine("Ввод матрицы смежности");
-            int begin = VortexInput();
+            VortexInput();
             adjacent = new int[vortex, vortex];
-            Console.WriteLine("Введите связь вершин в графе.\n " +
+            if (dkstr) Console.WriteLine("Введите связь вершин в графе\n " +
                 "0 - связи нет \t 1 - связь есть ");
+            else Console.WriteLine("Введите расстояние между вершинами");
             for (int i = 0; i < vortex; i++)
             {
                 for (int j = 0; j < vortex; j++)
                 {
-                    Console.Write("{0}-->{1}: ", i+begin, j+begin);
+                    Console.Write("{0}-->{1}: ", i + begin, j + begin);
                     adjacent[i, j] = int.Parse(Console.ReadLine());
-                    if ((adjacent[i, j] != 0) & (adjacent[i, j] != 1)) throw new FormatException("Введено неверное значение.");
+                    if ((!dkstr) && (adjacent[i, j] != 0) && (adjacent[i, j] != 1))
+                        throw new FormatException("Введено недопустимое значение");
                     if (j == vortex - 1) Console.Write('\n');
                 }
             }
@@ -46,7 +51,7 @@ namespace Graphs
             Console.Write('\n');
         }
 
-        private int VortexInput()
+        private void VortexInput()
         {
             if (vortex == 0)
             {
@@ -54,8 +59,7 @@ namespace Graphs
                 vortex = int.Parse(Console.ReadLine());
             }
             Console.Write("Отсчет вершин начинается с: ");
-            int begin = int.Parse(Console.ReadLine());
-            return begin;
+            begin = int.Parse(Console.ReadLine());
         }
 
         private int EdgeInput()
@@ -73,7 +77,7 @@ namespace Graphs
         public void IncInput()
         {
             Console.WriteLine("Ввод матрицы инцидентности");
-            int beginvortex = VortexInput();
+            VortexInput();
             int beginedge = EdgeInput();
             Console.WriteLine("Желаете построить ориентированный или неориентированный граф?" +
                 " \n 0 - Неориентированный \t 1 - Ориентированный");
@@ -87,9 +91,10 @@ namespace Graphs
             {
                 for (int j = 0; j < edge; j++)
                 {
-                    Console.Write("{0} --> {1}:", i + beginvortex, j + beginedge);
+                    Console.Write("{0} --> {1}:", i + begin, j + beginedge);
                     incident[i, j] = int.Parse(Console.ReadLine());
-                    if ((incident[i, j] != 0) & (Math.Abs(incident[i, j]) != 1)) throw new FormatException("Введено неверное значение.");
+                    if ((incident[i, j] != 0) & (Math.Abs(incident[i, j]) != 1))
+                        throw new FormatException("Введено неверное значение.");
                     if (j == edge - 1) Console.Write('\n');
                 }
             }
@@ -109,13 +114,91 @@ namespace Graphs
             Console.Write('\n');
         }
 
-        public void dfsVisit()
+        public void Dfs()
         {
-            Console.Write("Введите номер вершины, с которой хотите начать: ");
-            int StartVortex = int.Parse(Console.ReadLine());
-            int begin = VortexInput(); 
-            colour = new string[vortex];
+            Console.WriteLine("Поиск в глубину\n");
+            AdjInput(false);
+            visited = new bool[vortex];
+            visited[0] = true;
+            Console.WriteLine("Узел {0} посещен", 0 + begin);
+            for (int i = 0; i < vortex; i++)
+            {
+                if ((adjacent[0, i] == 1) & (!visited[i])) DfsHelper(i);
+            }
+        }
 
+        private void DfsHelper(int i)
+        {
+            visited[i] = true;
+            Console.WriteLine("Узел {0} посещен", i+begin);
+            for (int j = 0; j < vortex; j++)
+            {
+                if ((adjacent[i, j] == 1) & (!visited[j]))
+                {
+                    DfsHelper(j);
+                }
+            }
+        }
+
+        public void Bfs()
+        {
+            Console.WriteLine("Поиск в ширину\n");
+            AdjInput(false);
+            visited = new bool[vortex];
+            visited[0] = true;
+            Console.WriteLine("Узел {0} посещен", begin);
+            for (int i = 0; i < vortex; i++)
+            {
+                for (int j = 0; j < vortex; j++)
+                {
+                    if ((adjacent[i, j] == 1) & (!visited[j]))
+                    {
+                        visited[j] = true;
+                        Console.WriteLine("Узел {0} посещен", j + begin);
+                    }
+                }
+            }
+        }
+
+        private void DijkstraOutput()
+        {
+            Console.WriteLine("Расстояние между вершинами");
+            for (int i = 0; i < vortex; i++)
+            {
+                Console.WriteLine("1 --> {0} = {1}", i + begin, distance[i]);                
+            }
+        }
+
+        public void Dijkstra()
+        {
+            Console.WriteLine("Алгоритм Дейкстры\n");
+            AdjInput(true);
+            distance = new int[vortex];
+            visited = new bool[vortex];
+            visited[0] = true;
+            distance[0] = 0;
+            for (int i = 0; i < vortex; i++)
+            {
+                for (int j = 0; j < vortex; j++)
+                {
+                    if (adjacent[i, j] != 0)
+                    {
+                        if (!visited[j])
+                        {
+                            visited[j] = true;
+                            Console.WriteLine("Узел {0} посещен", j + begin);
+                            distance[j] = adjacent[i, j] + distance[i];
+                        }
+                        else
+                        {
+                            Console.WriteLine("Узел {0} посещен", j + begin);
+                            int sum = adjacent[i, j] + distance[i];
+                            if (sum < distance[j]) distance[j] = sum;
+                        }
+                    }
+                }
+            }
+            DijkstraOutput();
         }
     }
 }
